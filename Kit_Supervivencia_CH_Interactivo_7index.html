@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kit de Supervivencia · Capital Humano en Obra · Ventus</title>
+<style>
+  
+  :root{--gd:#1E5C3A;--gm:#2D7A4A;--gb:#009844;--or:#C87D2F;--orl:#E8A050;--bg:#F2F2F0;--white:#fff;--txt:#1C1C1C;--muted:#666;--sh:0 4px 24px rgba(30,92,58,0.10);}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;background:var(--bg);color:var(--txt);}
+
+  .hero{background:var(--gd);padding:52px 48px 44px;position:relative;overflow:hidden;}
+  .hero::before{content:'';position:absolute;width:380px;height:380px;border-radius:50%;background:rgba(0,152,68,.18);top:-100px;right:-60px;}
+  .hero::after{content:'';position:absolute;width:200px;height:200px;border-radius:50%;background:rgba(200,125,47,.15);bottom:-50px;left:30px;}
+  .hero-in{position:relative;z-index:1;max-width:960px;margin:0 auto;}
+  .htag{display:inline-block;background:var(--or);color:#fff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:16px;}
+  .hero h1{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;font-size:clamp(28px,4.5vw,50px);font-weight:800;color:#fff;line-height:1.1;margin-bottom:12px;}
+  .hero h1 span{color:var(--gb);}
+  .hero p{color:rgba(255,255,255,.7);font-size:15px;max-width:500px;line-height:1.6;}
+
+  .nav-wrap{background:#fff;border-bottom:1px solid #E8E8E6;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.06);}
+  .nav-tabs{display:flex;overflow-x:auto;max-width:960px;margin:0 auto;padding:0 20px;scrollbar-width:none;}
+  .nav-tabs::-webkit-scrollbar{display:none;}
+  .tbtn{flex-shrink:0;padding:16px 18px;border:none;background:none;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;font-size:13px;font-weight:500;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;transition:all .2s;white-space:nowrap;}
+  .tbtn:hover{color:var(--gd);}
+  .tbtn.active{color:var(--gd);border-bottom-color:var(--gb);font-weight:700;}
+
+  .content{max-width:960px;margin:0 auto;padding:36px 24px 80px;}
+  .sec{display:none;animation:fu .3s ease;}
+  .sec.active{display:block;}
+  @keyframes fu{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+
+  .sh{display:flex;align-items:flex-start;gap:18px;margin-bottom:28px;padding-bottom:22px;border-bottom:2px solid #E0EDE5;}
+  .si{width:52px;height:52px;border-radius:13px;background:var(--gd);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;}
+  .sh h2{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;font-size:24px;font-weight:800;color:var(--gd);margin-bottom:5px;}
+  .sh p{color:var(--muted);font-size:13.5px;line-height:1.5;}
+
+  .sec-sub{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;font-size:15px;font-weight:700;color:var(--gd);margin:24px 0 12px;}
+
+  .cgrid{display:grid;gap:14px;}
+  .cgrid.c2{grid-template-columns:repeat(auto-fit,minmax(340px,1fr));}
+  .cgrid.c3{grid-template-columns:repeat(auto-fit,minmax(280px,1fr));}
+
+  .card{background:#fff;border-radius:14px;padding:22px 26px;box-shadow:var(--sh);border-left:4px solid var(--gb);}
+  .card.or{border-left-color:var(--or);}
+  .card.dk{border-left-color:var(--gd);}
+  .card.red{border-left-color:#EF4444;}
+  .card h3{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;font-size:14px;font-weight:700;color:var(--gd);margin-bottom:10px;}
+  .card p{font-size:13px;color:var(--txt);line-height:1.7;}
+  .card ul{padding-left:18px;margin-top:6px;}
+  .card li{font-size:13px;color:var(--txt);line-height:1.7;margin-bottom:4px;}
+
+  .ctbl{width:100%;border-collapse:collapse;background:#fff;border-radius:14px;overflow:hidden;box-shadow:var(--sh);margin-bottom:20px;}
+  .ctbl thead tr{background:var(--gd);}
+  .ctbl th{padding:13px 16px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#fff;text-align:left;}
+  .ctbl td{padding:11px 16px;font-size:12.5px;color:var(--txt);border-bottom:1px solid #F0F0EE;vertical-align:top;line-height:1.55;}
+  .ctbl tr:last-child td{border-bottom:none;}
+  .ctbl tr:nth-child(even) td{background:#F8FBF9;}
+
+  .badge{display:inline-block;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:700;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;}
+  .by{background:#D1FAE5;color:#065F46;}
+  .bn{background:#FEE2E2;color:#991B1B;}
+  .bc{background:#FEF3C7;color:#92400E;}
+
+  .alert{border-radius:11px;padding:14px 18px;margin:18px 0;font-size:13px;line-height:1.6;display:flex;gap:10px;align-items:flex-start;}
+  .ai{font-size:18px;flex-shrink:0;margin-top:1px;}
+  .alert.warn{background:#FFF7ED;border-left:4px solid var(--or);color:#7C4A0A;}
+  .alert.danger{background:#FFF1F2;border-left:4px solid #EF4444;color:#7F1D1D;}
+  .alert.info{background:#E8F4EE;border-left:4px solid var(--gb);color:var(--gd);}
+  .alert.drive{background:linear-gradient(135deg,#1a73e8,#0d47a1);border-left:none;border-radius:14px;color:#fff;padding:18px 22px;}
+  .alert.drive .ai{font-size:28px;}
+  .alert.drive strong{color:#fff;}
+  .alert.drive p{color:rgba(255,255,255,.9);margin-top:4px;font-size:13px;}
+
+  .steps{display:flex;flex-direction:column;gap:12px;}
+  .step{display:grid;grid-template-columns:36px 1fr;gap:16px;align-items:start;}
+  .snum{width:36px;height:36px;border-radius:50%;background:var(--gd);color:#fff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;font-size:14px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .sbox-inner{background:#fff;border-radius:12px;padding:16px 20px;box-shadow:var(--sh);}
+  .sbox-inner strong{font-weight:700;font-size:13.5px;color:var(--gd);display:block;margin-bottom:6px;}
+  .sbox-inner p{font-size:13px;color:var(--txt);line-height:1.65;}
+  .sbox-inner .sub-list{margin-top:8px;padding-left:0;list-style:none;}
+  .sbox-inner .sub-list li{font-size:12.5px;color:#444;line-height:1.6;padding:3px 0 3px 16px;position:relative;}
+  .sbox-inner .sub-list li::before{content:'·';position:absolute;left:4px;color:var(--gb);font-weight:700;}
+  .step-note{font-size:12px;color:var(--or);font-style:italic;margin-top:6px;display:block;}
+
+  .srow{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin:20px 0;}
+  .sbox{background:var(--gd);border-radius:13px;padding:18px 20px;text-align:center;}
+  .sbox.or{background:var(--or);}
+  .sbox.red{background:#EF4444;}
+  .sbox .sn{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;font-size:26px;font-weight:800;color:#fff;display:block;margin-bottom:3px;}
+  .sbox .sl{font-size:11px;color:rgba(255,255,255,.85);line-height:1.4;}
+
+  /* Gradual table */
+  .grad-table{width:100%;border-collapse:collapse;background:#fff;border-radius:14px;overflow:hidden;box-shadow:var(--sh);margin-bottom:20px;}
+  .grad-table th{padding:12px 16px;background:var(--gd);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#fff;text-align:left;}
+  .grad-table td{padding:12px 16px;font-size:13px;border-bottom:1px solid #F0F0EE;vertical-align:middle;}
+  .grad-table tr:last-child td{border-bottom:none;}
+  .grad-table .now-row td{background:#E8F4EE;font-weight:700;}
+  .grad-table .next-row td{background:#FEF9EE;}
+
+  .pill{display:inline-block;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;}
+  .pill-green{background:#D1FAE5;color:#065F46;}
+  .pill-orange{background:#FEF3C7;color:#92400E;}
+  .pill-red{background:#FEE2E2;color:#991B1B;}
+  .pill-gray{background:#F1F5F9;color:#475569;}
+
+  .rh{display:grid;grid-template-columns:1.3fr 1fr 1.6fr;gap:14px;padding:8px 20px;margin-bottom:4px;}
+  .rh span{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);}
+  .rrow{background:#fff;border-radius:11px;padding:16px 20px;margin-bottom:10px;box-shadow:var(--sh);display:grid;grid-template-columns:1.3fr 1fr 1.6fr;gap:14px;align-items:start;}
+  .rt{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;font-weight:700;font-size:13px;color:var(--gd);}
+  .rb{font-size:12.5px;color:var(--muted);}
+  .ra{font-size:12.5px;color:var(--txt);font-weight:500;}
+
+  .ccard{background:#fff;border-radius:13px;padding:18px 22px;box-shadow:var(--sh);display:flex;align-items:center;gap:16px;}
+  .cav{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;font-size:15px;font-weight:800;color:#fff;flex-shrink:0;}
+  .ci strong{font-size:14.5px;color:var(--gd);font-weight:700;display:block;}
+  .ci span{font-size:12px;color:var(--muted);display:block;line-height:1.7;}
+
+  /* TIP CARDS */
+  .tip{background:#fff;border-radius:14px;padding:20px 22px;box-shadow:var(--sh);border-top:4px solid var(--gb);}
+  .tip.or{border-top-color:var(--or);}
+  .tip.dk{border-top-color:var(--gd);}
+  .tip.red{border-top-color:#EF4444;}
+  .tip.purple{border-top-color:#7C3AED;}
+  .tip.blue{border-top-color:#2563EB;}
+  .tip-cat{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gb);margin-bottom:6px;}
+  .tip.or .tip-cat{color:var(--or);}
+  .tip.dk .tip-cat{color:var(--gd);}
+  .tip.red .tip-cat{color:#EF4444;}
+  .tip.purple .tip-cat{color:#7C3AED;}
+  .tip.blue .tip-cat{color:#2563EB;}
+  .tip h4{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;font-size:14px;font-weight:700;color:var(--txt);margin-bottom:6px;}
+  .tip p{font-size:13px;color:#444;line-height:1.65;}
+
+  /* SABÍAS QUE */
+  .sabia{background:linear-gradient(135deg,var(--gd),#2D6A4F);border-radius:14px;padding:20px 22px;color:#fff;position:relative;overflow:hidden;}
+  .sabia::before{content:'?';position:absolute;right:16px;top:-10px;font-size:80px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;font-weight:800;color:rgba(255,255,255,.08);}
+  .sabia .tip-cat{color:var(--orl);}
+  .sabia h4{color:#fff;}
+  .sabia p{color:rgba(255,255,255,.88);}
+
+  .footer{background:var(--gd);text-align:center;padding:22px;color:rgba(255,255,255,.6);font-size:12px;}
+  .footer strong{color:var(--gb);}
+
+  /* Norma box */
+  .norma-box{background:#F8FBF9;border:1.5px solid #C8E6D5;border-radius:12px;padding:16px 20px;margin:14px 0;font-size:12.5px;color:var(--txt);line-height:1.65;}
+  .norma-box .norma-title{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:1px;color:var(--gd);text-transform:uppercase;margin-bottom:6px;}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-in">
+    <div class="htag">Capital Humano · Ventus</div>
+    <h1>Kit de <span>Supervivencia</span><br>en Obra</h1>
+    <p>Tu guía de consulta rápida para el día a día. Todo lo que necesitas sin tener que escalar cada pregunta.</p>
+  </div>
+</div>
+
+<div class="nav-wrap">
+  <div class="nav-tabs">
+    <button class="tbtn active" onclick="show('nomina',this)">📋 Nómina</button>
+    <button class="tbtn" onclick="show('disciplinario',this)">⚖️ Disciplinario</button>
+    <button class="tbtn" onclick="show('carpetas',this)">📁 Carpetas</button>
+    <button class="tbtn" onclick="show('bienestar',this)">🌱 Bienestar</button>
+    <button class="tbtn" onclick="show('reforma',this)">🔄 Reforma Ley 2466</button>
+    <button class="tbtn" onclick="show('contactos',this)">📞 Contactos</button>
+    <button class="tbtn" onclick="show('tips',this)">💡 Tips CH</button>
+  </div>
+</div>
+
+<div class="content">
+
+<!-- ══════════════ NÓMINA ══════════════ -->
+<div id="nomina" class="sec active">
+  <div class="sh"><div class="si">📋</div><div>
+    <h2>Nómina — Horas Extras y Recargos</h2>
+    <p>Actualizado a mayo 2026. Ley 2466 de 2025 en aplicación. SMMLV vigente: <strong>$1.750.905</strong>.</p>
+  </div></div>
+
+  <div class="alert info"><span class="ai">💡</span>
+    <div><strong>Jornada actual (mayo 2026): 44 h/semana = 220 horas mensuales. Divisor: 220.</strong><br>
+    Valor hora ordinaria = Salario mensual ÷ 220.<br>
+    En julio 2026 la jornada baja a 42 h/semana = 210 h mensuales. El divisor cambia a 210 y el valor hora sube.
+    </div>
+  </div>
+
+  <div class="srow">
+    <div class="sbox"><span class="sn">$1.750.905</span><span class="sl">Salario mínimo mensual vigente 2026</span></div>
+    <div class="sbox or"><span class="sn">220 h</span><span class="sl">Horas mensuales · divisor actual (hasta jun 2026)</span></div>
+    <div class="sbox red"><span class="sn">210 h</span><span class="sl">Divisor desde julio 2026 (42 h/semana)</span></div>
+  </div>
+
+  <p class="sec-sub">Horas Extras — Ley 2466 de 2025</p>
+  <table class="ctbl">
+    <thead><tr><th>Concepto</th><th>Definición</th><th>Recargo</th><th>Fórmula</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Hora extra diurna</strong></td>
+        <td>Trabajada fuera de la jornada ordinaria entre 6:00 AM y 9:00 PM</td>
+        <td><span class="badge by">+25%</span></td>
+        <td>V/h × 1.25</td>
+      </tr>
+      <tr>
+        <td><strong>Hora extra nocturna</strong></td>
+        <td>Hora extra trabajada entre 9:00 PM y 6:00 AM</td>
+        <td><span class="badge bn">+75%</span></td>
+        <td>V/h × 1.75</td>
+      </tr>
+      <tr>
+        <td><strong>Extra en día de descanso obligatorio diurna</strong></td>
+        <td>Hora extra en día de descanso obligatorio (domingo u otro acordado) entre 6:00 AM y 9:00 PM — <strong>recargo gradual Art. 179 Ley 2466</strong></td>
+        <td><span class="badge bc">+80% hoy</span></td>
+        <td>V/h × 1.80 <em style="font-size:11px;color:var(--or)">(ver tabla gradual)</em></td>
+      </tr>
+      <tr>
+        <td><strong>Extra en día de descanso obligatorio nocturna</strong></td>
+        <td>Hora extra en día de descanso obligatorio entre 9:00 PM y 6:00 AM</td>
+        <td><span class="badge bn">+75%</span></td>
+        <td>V/h × 1.75</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="sec-sub">📅 Implementación gradual — Art. 179 Ley 2466 de 2025<br><small style="font-weight:400;font-size:13px;color:var(--muted)">Recargo por laborar en día de descanso obligatorio (ocasional u habitual)</small></p>
+
+  <div class="norma-box">
+    <div class="norma-title">Art. 14 Ley 2466/2025 — Parágrafo transitorio</div>
+    El recargo del 100% podrá implementarse de manera gradual: a partir del 1° de julio de 2025 el recargo es del 80%; a partir del 1° de julio de 2026 sube al 90%; a partir del 1° de julio de 2027 se aplica el 100% pleno. Sin perjuicio de que el empleador se acoja voluntariamente al 100% desde ya.
+  </div>
+
+  <table class="grad-table">
+    <thead><tr><th>Período</th><th>Recargo día de descanso obligatorio</th><th>Multiplicador</th><th>Estado</th></tr></thead>
+    <tbody>
+      <tr><td>Hasta jun 2025</td><td>75%</td><td>× 1.75</td><td><span class="pill pill-gray">Anterior</span></td></tr>
+      <tr><td>Jul 2025 – Jun 2026</td><td>80%</td><td>× 1.80</td><td><span class="pill pill-gray">Anterior</span></td></tr>
+      <tr class="now-row"><td><strong>Jul 2026 – Jun 2027</strong></td><td><strong>90%</strong></td><td><strong>× 1.90</strong></td><td><span class="pill pill-orange">PRÓXIMO — Jul 2026</span></td></tr>
+      <tr class="next-row"><td>Jul 2027 en adelante</td><td>100%</td><td>× 2.00</td><td><span class="pill pill-red">Meta final</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="alert warn"><span class="ai">📌</span>
+    <div><strong>Importante:</strong> Hoy (mayo 2026) el recargo es 80% (× 1.80). A partir del <strong>1° de julio de 2026</strong> sube a 90% (× 1.90).</div>
+  </div>
+
+  <p class="sec-sub">Recargos en jornada ordinaria (no son horas extras)</p>
+  <table class="ctbl">
+    <thead><tr><th>Concepto</th><th>Definición</th><th>Recargo</th><th>Fórmula</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Recargo nocturno</strong></td>
+        <td>Hora ordinaria trabajada entre 9:00 PM y 6:00 AM</td>
+        <td><span class="badge by">+35%</span></td>
+        <td>V/h × 1.35</td>
+      </tr>
+      <tr>
+        <td><strong>Día de descanso obligatorio ordinario</strong></td>
+        <td>Hora ordinaria trabajada en día de descanso (no extra) — aplica tabla gradual Art. 179</td>
+        <td><span class="badge bc">+80% hoy</span></td>
+        <td>V/h × 1.80</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="sec-sub">Ejemplo práctico — mayo 2026 (divisor 220)</p>
+  <div class="card">
+    <h3>Salario mínimo $1.750.905 · Valor hora = $7.959</h3>
+    <p>
+      Valor hora ordinaria = $1.750.905 ÷ 220 = <strong>$7.959</strong><br><br>
+      Hora extra diurna (+25%) = $7.959 × 1.25 = <strong>$9.949</strong><br>
+      Hora extra nocturna (+75%) = $7.959 × 1.75 = <strong>$13.928</strong><br>
+      Extra día descanso diurna (+80% hoy) = $7.959 × 1.80 = <strong>$14.326</strong><br>
+      Recargo nocturno ordinario (+35%) = $7.959 × 1.35 = <strong>$10.745</strong><br>
+      Día descanso ordinario (+80% hoy) = $7.959 × 1.80 = <strong>$14.326</strong>
+    </p>
+  </div>
+
+  <div class="card or" style="margin-top:14px;">
+    <h3>Salario $2.000.000 · Valor hora = $9.090</h3>
+    <p>
+      Valor hora ordinaria = $2.000.000 ÷ 220 = <strong>$9.090</strong><br><br>
+      Hora extra diurna (+25%) = $9.090 × 1.25 = <strong>$11.363</strong><br>
+      Hora extra nocturna (+75%) = $9.090 × 1.75 = <strong>$15.908</strong><br>
+      Extra día descanso diurna (+80%) = $9.090 × 1.80 = <strong>$16.363</strong><br>
+      Recargo nocturno ordinario (+35%) = $9.090 × 1.35 = <strong>$12.272</strong>
+    </p>
+  </div>
+
+  <div class="alert danger"><span class="ai">🚨</span>
+    <div><strong>Límite legal de horas extras (Art. CST):</strong> Máximo <strong>2 horas extras diarias</strong> y máximo <strong>12 horas extras semanales</strong>. Superar este límite es una infracción laboral sancionable por el Ministerio de Trabajo. Toda hora extra requiere autorización escrita previa del supervisor.</div>
+  </div>
+</div>
+
+<!-- ══════════════ DISCIPLINARIO ══════════════ -->
+<div id="disciplinario" class="sec">
+  <div class="sh"><div class="si">⚖️</div><div>
+    <h2>Proceso Disciplinario</h2>
+    <p>Paso a paso conforme a la Ley 2466 de 2025. Seguir el procedimiento completo protege a la empresa y al trabajador.</p>
+  </div></div>
+
+  <div class="alert danger"><span class="ai">🚨</span>
+    <div><strong>NUNCA apliques una sanción sin haber realizado los descargos.</strong> Omitir este paso invalida la sanción legalmente y expone a la empresa a demandas laborales.</div>
+  </div>
+
+  <div class="steps">
+    <div class="step">
+      <div class="snum">1</div>
+      <div class="sbox-inner">
+        <strong>Identificar y documentar la falta</strong>
+        <p>Registrar exactamente qué ocurrió, cuándo, dónde y quiénes estuvieron involucrados.</p>
+        <ul class="sub-list">
+          <li>Testimonios de testigos presenciales</li>
+          <li>Registros de sistemas, fotos, correos, reportes de turno o supervisor</li>
+          <li>Guardar evidencia digital con fecha</li>
+        </ul>
+      </div>
+    </div>
+    <div class="step">
+      <div class="snum">2</div>
+      <div class="sbox-inner">
+        <strong>Determinar la gravedad según el RIT</strong>
+        <p><strong>Falta leve:</strong> primer incumplimiento menor → llamado de atención escrito.</p>
+        <p style="margin-top:6px;"><strong>Falta grave:</strong> incumplimiento serio o reincidencia → suspensión sin salario (máx. 8 días) o terminación con justa causa.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="snum">3</div>
+      <div class="sbox-inner">
+        <strong>Enviar citación escrita — mínimo 5 días hábiles antes</strong>
+        <p>La citación debe contener de forma detallada y justificada:</p>
+        <ul class="sub-list">
+          <li>Fecha, hora y lugar de la diligencia</li>
+          <li>Descripción precisa de los hechos: qué, cuándo, dónde y cómo</li>
+          <li>Norma o artículo del RIT presuntamente incumplido</li>
+          <li>Relación de pruebas que se aportarán (documentos, testigos, registros)</li>
+          <li>Derecho del trabajador a presentar descargos y a ser acompañado</li>
+        </ul>
+        <span class="step-note">Ley 2466/2025: el plazo mínimo es 5 días hábiles. Una citación con menos tiempo es inválida.</span>
+      </div>
+    </div>
+    <div class="step">
+      <div class="snum">4</div>
+      <div class="sbox-inner">
+        <strong>Diligencia de descargos</strong>
+        <p>Reunión formal donde el trabajador ejerce su derecho de defensa. Puede asistir acompañado de un compañero de trabajo o representante sindical. Se presentan las pruebas y el trabajador expone su versión. Levantar el acta durante la diligencia.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="snum">5</div>
+      <div class="sbox-inner">
+        <strong>Acta de descargos</strong>
+        <p>Registrar fielmente todo lo manifestado. Firmar al finalizar. Si el trabajador se niega a firmar, dejar constancia expresa con dos testigos presentes.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="snum">6</div>
+      <div class="sbox-inner">
+        <strong>Evaluar y tomar la decisión</strong>
+        <p>Analizar los descargos y las pruebas. La sanción puede ser: llamado de atención escrito, suspensión sin salario o terminación con justa causa según la gravedad establecida en el RIT.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="snum">7</div>
+      <div class="sbox-inner">
+        <strong>Notificar la sanción por escrito</strong>
+        <p>Dentro de los <strong>30 días siguientes</strong> a los descargos. Entrega personal con constancia de recibo firmada por el trabajador.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="snum">8</div>
+      <div class="sbox-inner">
+        <strong>Archivar en la carpeta del trabajador</strong>
+        <p>Guardar: citación + constancia de entrega · acta de descargos · carta de sanción · constancia de recibo de la sanción.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ CARPETAS ══════════════ -->
+<div id="carpetas" class="sec">
+  <div class="sh"><div class="si">📁</div><div>
+    <h2>Carpeta Documental</h2>
+    <p>Documentos obligatorios de ingreso y retiro. Carpeta incompleta = indicador Legal en 0.</p>
+  </div></div>
+
+  <div class="alert drive">
+    <span class="ai">☁️</span>
+    <div>
+      <strong>TODA la documentación debe quedar cargada en Drive</strong>
+      <p>Sin excepción. El físico se puede perder — la copia en Drive es el respaldo oficial. Sube cada documento el mismo día que lo recibes firmado. Carpeta sin carga en Drive = carpeta incompleta para efectos del dashboard.</p>
+    </div>
+  </div>
+
+  <p class="sec-sub">📥 Documentos de INGRESO</p>
+  <table class="ctbl" style="margin-bottom:28px;">
+    <thead><tr><th>Documento</th><th>Obligatorio</th><th>Observación</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Cédula de ciudadanía (copia)</strong></td><td><span class="badge by">Sí</span></td><td>Legible, ambos lados</td></tr>
+      <tr><td><strong>Hoja de vida</strong></td><td><span class="badge by">Sí</span></td><td>Formato de empresa</td></tr>
+      <tr><td><strong>Contrato de trabajo firmado</strong></td><td><span class="badge by">Sí</span></td><td>Original + copia para el trabajador</td></tr>
+      <tr><td><strong>Otrosí (si aplica)</strong></td><td><span class="badge bc">Si hay cambios</span></td><td>Cualquier modificación al contrato inicial</td></tr>
+      <tr><td><strong>Exámenes médicos de ingreso</strong></td><td><span class="badge by">Sí</span></td><td>Con concepto de aptitud laboral</td></tr>
+      <tr><td><strong>Afiliaciones: EPS, AFP, ARL, Caja</strong></td><td><span class="badge by">Sí</span></td><td>Confirmación de afiliación activa</td></tr>
+      <tr><td><strong>Certificado bancario</strong></td><td><span class="badge by">Sí</span></td><td>Cuenta activa para pago de nómina</td></tr>
+      <tr><td><strong>Formato de conflicto de intereses firmado y consulta de Inspektor</strong></td><td><span class="badge by">Sí</span></td><td>Firmado por el trabajador</td></tr>
+      <tr><td><strong>Formatos y políticas firmados por el empleador</strong></td><td><span class="badge by">Sí</span></td><td>Todos los formatos internos vigentes</td></tr>
+      <tr><td><strong>Certificados de estudio / experiencia</strong></td><td><span class="badge bc">Según cargo</span></td><td>Técnicos y profesionales: obligatorio</td></tr>
+    </tbody>
+  </table>
+
+  <p class="sec-sub">📤 Documentos de RETIRO</p>
+  <table class="ctbl">
+    <thead><tr><th>Documento</th><th>Obligatorio</th><th>Quién lo genera</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Notificación de terminación de contrato</strong></td><td><span class="badge by">Sí</span></td><td>Equipo de CH</td></tr>
+      <tr><td><strong>Liquidación final de contrato firmada</strong></td><td><span class="badge by">Sí</span></td><td>Equipo de CH</td></tr>
+      <tr><td><strong>Paz y salvo</strong></td><td><span class="badge by">Sí</span></td><td>Equipo de CH</td></tr>
+      <tr><td><strong>Autorización para examen médico de egreso</strong></td><td><span class="badge by">Sí</span></td><td>Equipo de CH</td></tr>
+      <tr><td><strong>Autorización para el retiro de cesantías</strong></td><td><span class="badge bc">Si aplica</span></td><td>Equipo de CH</td></tr>
+      <tr><td><strong>Certificado laboral</strong></td><td><span class="badge by">Sí</span></td><td>Equipo de CH</td></tr>
+    </tbody>
+  </table>
+
+  <div class="alert warn"><span class="ai">⚠️</span><div>Verifica siempre antes de dar el proceso por cerrado. Una sola carpeta incompleta impacta el indicador Legal de toda la obra. Recuerda: <strong>todo debe estar en Drive.</strong></div></div>
+</div>
+
+<!-- ══════════════ BIENESTAR ══════════════ -->
+<div id="bienestar" class="sec">
+  <div class="sh"><div class="si">🌱</div><div>
+    <h2>Bienestar e Ideas para Obra</h2>
+    <p>Actividades prácticas para mejorar el clima laboral y la productividad. Meta: mínimo 4 por semestre.</p>
+  </div></div>
+
+  <div class="srow">
+    <div class="sbox"><span class="sn">4</span><span class="sl">Actividades mínimas por semestre</span></div>
+    <div class="sbox or"><span class="sn">80 pts</span><span class="sl">Puntaje mínimo esperado en el indicador</span></div>
+  </div>
+
+  <div class="cgrid c2">
+    <div class="card"><h3>🏃 Pausas activas dirigidas</h3><p>5–10 minutos al inicio del turno. Reducen lesiones, activan el cuerpo y mejoran la concentración. Designa un líder rotativo cada semana. Impacto directo en productividad y ausentismo.</p></div>
+    <div class="card or"><h3>🎂 Celebración de cumpleaños</h3><p>Un detalle sencillo genera sentido de pertenencia. Lleva un calendario de fechas compartido con el supervisor. No requiere presupuesto.</p></div>
+    <div class="card dk"><h3>💬 Conversatorio de 10 minutos</h3><p>Una vez al mes, espacio informal para que el equipo exprese inquietudes o logros. Sin agenda fija. Detecta problemas antes de que escalen y genera confianza.</p></div>
+    <div class="card"><h3>🩺 Jornada de salud preventiva</h3><p>Coordinada con la ARL: toma de presión, glucosa, vacunación, higiene postural. Reduce ausentismo y demuestra cuidado real por el trabajador.</p></div>
+    <div class="card or"><h3>🏆 Reconocimiento del mes</h3><p>Destacar públicamente a un trabajador por puntualidad, actitud o producción. Un mensaje en el grupo o mención en reunión cuesta $0 y tiene gran impacto en el clima.</p></div>
+    <div class="card dk"><h3>📚 Micro-capacitación en obra</h3><p>15–20 minutos sobre temas prácticos: primeros auxilios, manejo del estrés, finanzas personales, derechos laborales. Aumenta competencias y compromiso.</p></div>
+    <div class="card"><h3>🍳 Compartir gastronómico</h3><p>Cada quien trae un plato típico de su región. Genera conversación, orgullo por el origen y un ambiente positivo. Funciona muy bien al inicio de un proyecto nuevo o como cierre de semestre.</p></div>
+    <div class="card or"><h3>👨‍👩‍👧 Escuela de familia</h3><p>Charla sobre temas que impactan al trabajador fuera del trabajo: manejo del dinero, crianza positiva, convivencia. Genera lealtad y reduce ausentismo por problemas personales.</p></div>
+  </div>
+
+  <div class="alert info"><span class="ai">📸</span><div>Toda actividad debe registrarse con <strong>lista de asistencia o foto</strong> y cargarse en Drive y en la plataforma dentro de los 3 días hábiles siguientes.</div></div>
+</div>
+
+<!-- ══════════════ REFORMA LEY 2466 ══════════════ -->
+<div id="reforma" class="sec">
+  <div class="sh"><div class="si">🔄</div><div>
+    <h2>Reforma Laboral — Ley 2466 de 2025</h2>
+    <p>Estado a mayo 2026. Lo que ya rige, lo que cambia en julio y lo que viene.</p>
+  </div></div>
+
+  <div class="alert info"><span class="ai">📅</span><div>Jornada vigente: 44 h/semana. En julio 2026 entra la reducción a 42 h y el recargo de día de descanso sube al 90%.</div></div>
+
+  <p class="sec-sub">🕐 Reducción progresiva de la jornada laboral</p>
+  <div class="card dk" style="margin-bottom:20px;">
+    <h3>De 48 a 42 horas — cronograma Ley 2101/2021 + Ley 2466/2025</h3>
+    <p>
+      2023 → 47 h/semana (242 h/mes · divisor 242)<br>
+      2024 → 46 h/semana (230 h/mes · divisor 230)<br>
+      2025 → 44 h/semana (220 h/mes · divisor 220)<br>
+      <strong style="color:var(--gb);">Mayo 2026 (HOY) → 44 h/semana · divisor 220 · hora mínima: $7.959</strong><br>
+      <strong style="color:var(--or);">Julio 2026 → 42 h/semana · divisor 210 · hora mínima: $8.338</strong><br>
+      2027 en adelante → 42 h/semana definitivo
+    </p>
+  </div>
+
+  <p class="sec-sub">📋 Lo que ya está vigente</p>
+  <div class="rh"><span>Tema</span><span>Antes</span><span>Hoy — mayo 2026</span></div>
+  <div class="rrow"><div class="rt">Jornada laboral</div><div class="rb">48 h/semana</div><div class="ra"><strong>44 h/semana</strong> (baja a 42 h en julio 2026)</div></div>
+  <div class="rrow"><div class="rt">Recargo nocturno</div><div class="rb">Desde las 10:00 PM</div><div class="ra"><strong>Desde las 9:00 PM (+35%)</strong> — Ley 2466/2025</div></div>
+  <div class="rrow"><div class="rt">Día de descanso obligatorio</div><div class="rb">+75% recargo</div><div class="ra"><strong>+80% hoy</strong> (gradual: 90% en jul 2026 → 100% en jul 2027)</div></div>
+  <div class="rrow"><div class="rt">Citación disciplinaria</div><div class="rb">2 días hábiles</div><div class="ra"><strong>5 días hábiles mínimo</strong> + pruebas adjuntas obligatorias</div></div>
+  <div class="rrow"><div class="rt">Descanso obligatorio (denominación)</div><div class="rb">"Dominical"</div><div class="ra">Ahora se llama <strong>"día de descanso obligatorio"</strong>. Puede ser distinto al domingo si así se pacta por escrito (otrosí)</div></div>
+  <div class="rrow"><div class="rt">Derecho a desconexión digital</div><div class="rb">No existía</div><div class="ra">El trabajador puede no responder mensajes fuera de jornada <strong>sin consecuencias laborales</strong></div></div>
+
+  <p class="sec-sub" style="margin-top:28px;">⏳ Lo que cambia próximamente</p>
+  <div class="rh"><span>Tema</span><span>Cuándo</span><span>Qué implica</span></div>
+  <div class="rrow"><div class="rt">Jornada 42 h/semana</div><div class="rb">Julio 2026</div><div class="ra">Divisor baja a 210 h. El valor de la hora sube. Actualizar sistema de nómina antes de julio.</div></div>
+  <div class="rrow"><div class="rt">Recargo día descanso obligatorio sube a 90%</div><div class="rb">1° julio 2026</div><div class="ra">De ×1.80 a <strong>×1.90</strong>. Impacto en obras con operación en días de descanso.</div></div>
+  <div class="rrow"><div class="rt">Recargo día descanso obligatorio sube a 100%</div><div class="rb">1° julio 2027</div><div class="ra">Llega al <strong>×2.00</strong> (recargo pleno). Meta final de la reforma.</div></div>
+
+  <div class="alert warn"><span class="ai">⚠️</span><div>Ante cualquier duda sobre aplicación de la Ley 2466 en obra, consultar con coordinación <strong>antes</strong> de informar al colaborador o liquidar un concepto.</div></div>
+</div>
+
+<!-- ══════════════ CONTACTOS ══════════════ -->
+<div id="contactos" class="sec">
+  <div class="sh"><div class="si">📞</div><div>
+    <h2>Contactos del Equipo CH</h2>
+    <p>Cuándo escalar y a quién. Mejor consultar antes de actuar.</p>
+  </div></div>
+
+  <div class="card dk" style="margin-bottom:24px;">
+    <h3>Cuándo escalar a Coordinación</h3>
+    <ul>
+      <li>Cualquier proceso disciplinario — antes de citar al trabajador</li>
+      <li>Despidos o terminaciones con justa causa</li>
+      <li>Accidentes graves o incapacidades mayores a 30 días</li>
+      <li>Denuncias de acoso laboral o sexual</li>
+      <li>Vacantes sin candidato después de 10 días</li>
+      <li>Otrosí de categoría no definida → pasa primero por Legal</li>
+      <li>Dudas sobre Ley 2466 de 2025</li>
+    </ul>
+  </div>
+
+  <div class="cgrid c2">
+    <div class="ccard"><div class="cav" style="background:var(--gd)">LR</div><div class="ci"><strong>Luisa Romero</strong><span>Coordinadora CH</span><span>📱 313 694 2080 · ✉️ lromero@ventus.global</span></div></div>
+    <div class="ccard"><div class="cav" style="background:var(--gb)">LS</div><div class="ci"><strong>Linda Sánchez</strong><span>Suria / Quifa</span><span>📱 302 516 0388 · ✉️ lsanchez@ventus.global</span></div></div>
+    <div class="ccard"><div class="cav" style="background:var(--gd)">CC</div><div class="ci"><strong>Cristian Claros</strong><span>Malambo / Quifa</span><span>📱 305 278 3712 · ✉️ cclaro@ventus.global</span></div></div>
+    <div class="ccard"><div class="cav" style="background:var(--or)">KS</div><div class="ci"><strong>Katherine Sánchez</strong><span>El Campano / Bugambiles</span><span>📱 321 202 8169 · ✉️ ksanchez@ventus.global</span></div></div>
+    <div class="ccard"><div class="cav" style="background:#E8A050">SF</div><div class="ci"><strong>Sonia Fernández</strong><span>Admin CH JR — El Campano</span><span>✉️ sfernandez@ventus.global</span></div></div>
+    <div class="ccard"><div class="cav" style="background:#5A8F69">XA</div><div class="ci"><strong>Ximena Amado</strong><span>Valledupar 1, 2 y 3</span><span>📱 315 149 8143 · ✉️ pamado@ventus.global</span></div></div>
+    <div class="ccard"><div class="cav" style="background:var(--gm)">JA</div><div class="ci"><strong>Juliana Acosta</strong><span>Equipo CH</span><span>📱 316 438 3265 · ✉️ jacosta@ventus.global</span></div></div>
+    <div class="ccard"><div class="cav" style="background:var(--gd)">LH</div><div class="ci"><strong>Lucina Horvat</strong><span>Equipo CH</span><span>📱 +598 99 137 648 · ✉️ lhorvat@ventus.global</span></div></div>
+    <div class="ccard"><div class="cav" style="background:var(--gm)">NT</div><div class="ci"><strong>Nellys Torres</strong><span>Equipo CH</span><span>📱 316 538 8346 · ✉️ ntorres@ventus.global</span></div></div>
+  </div>
+  <div class="alert info" style="margin-top:22px;"><span class="ai">🙌</span><div>Mejor prevenir que corregir. Siempre puedes consultar antes de tomar una decisión en obra.</div></div>
+</div>
+
+<!-- ══════════════ TIPS CH ══════════════ -->
+<div id="tips" class="sec">
+  <div class="sh"><div class="si">💡</div><div>
+    <h2>Tips Prácticos para CH en Obra</h2>
+    <p>Manejo emocional, norma, datos útiles y consejos que marcan la diferencia en el día a día.</p>
+  </div></div>
+
+  <p class="sec-sub">🧘 Manejo emocional y bienestar propio</p>
+  <div class="cgrid c2" style="margin-bottom:28px;">
+    <div class="tip purple">
+      <div class="tip-cat">🧘 MANEJO EMOCIONAL</div>
+      <h4>La técnica 4-7-8 para bajarte del estrés</h4>
+      <p>Cuando sientas que la situación te desborda: inhala 4 segundos, sostén 7, exhala 8. Repite 3 veces. Activa el sistema nervioso parasimpático y te saca del modo reactivo en menos de 2 minutos. Úsala antes de una conversación difícil.</p>
+    </div>
+    <div class="tip purple">
+      <div class="tip-cat">🧘 MANEJO EMOCIONAL</div>
+      <h4>No te lleves el turno a casa</h4>
+      <p>Antes de salir de obra, tómate 5 minutos para anotar en tu celular las 3 cosas pendientes del día siguiente. Al escribirlas, el cerebro las "suelta". Esto reduce la ansiedad nocturna y mejora la calidad del descanso.</p>
+    </div>
+  </div>
+
+  <p class="sec-sub">🆘 Manejo de una persona en crisis</p>
+  <div class="cgrid c2" style="margin-bottom:28px;">
+    <div class="tip red">
+      <div class="tip-cat">🆘 PERSONA EN CRISIS</div>
+      <h4>Los primeros 60 segundos son los más importantes</h4>
+      <p>Cuando un trabajador llegue alterado o en llanto: baja tu tono de voz, no interrumpas, no ofrezcas soluciones inmediatas. Solo di: <em>"Estoy aquí, te escucho."</em> El cerebro en crisis necesita sentirse seguro antes de poder escuchar cualquier otra cosa.</p>
+    </div>
+    <div class="tip red">
+      <div class="tip-cat">🆘 PERSONA EN CRISIS</div>
+      <h4>No digas "cálmate" — di esto en cambio</h4>
+      <p>Pedirle a alguien que se calme cuando está en crisis lo frustra más. En cambio: <em>"Entiendo que esto es difícil."</em> / <em>"¿Quieres que busquemos un espacio privado?"</em> / <em>"¿Hay algo urgente que necesites ahora mismo?"</em>. Valida antes de resolver.</p>
+    </div>
+    <div class="tip red">
+      <div class="tip-cat">🆘 PERSONA EN CRISIS</div>
+      <h4>Cuándo escalar siempre</h4>
+      <p>Si el trabajador menciona hacerse daño, habla de una situación de violencia doméstica, o su estado no mejora después de 20 minutos, no intentes manejarlo solo. Contacta de inmediato a coordinación CH y, si es necesario, a la línea de crisis de la EPS o al 123.</p>
+    </div>
+    <div class="tip red">
+      <div class="tip-cat">🆘 PERSONA EN CRISIS</div>
+      <h4>Después de la crisis, documenta</h4>
+      <p>Deja un registro escrito de lo ocurrido: fecha, qué dijo el trabajador, qué hiciste tú, a quién notificaste. No es para sancionarlo — es para protegerlo y tener contexto si la situación se repite. Guárdalo de forma confidencial.</p>
+    </div>
+  </div>
+
+  <p class="sec-sub">📖 ¿Sabías que? — Datos de la norma</p>
+  <div class="cgrid c2" style="margin-bottom:28px;">
+    <div class="sabia">
+      <div class="tip-cat">💡 SABÍAS QUE</div>
+      <h4>El límite de horas extras es 12 por semana</h4>
+      <p>El Código Sustantivo del Trabajo limita las horas extras a <strong>2 diarias y 12 semanales</strong>. Quien autorice más está cometiendo una infracción laboral. El inspector de trabajo puede sancionar a la empresa aunque el trabajador haya "aceptado" hacerlas.</p>
+    </div>
+    <div class="sabia">
+      <div class="tip-cat">💡 SABÍAS QUE</div>
+      <h4>El domingo ya no es el único día de descanso</h4>
+      <p>Con la Ley 2466/2025, las partes pueden <strong>pactar por escrito un día de descanso distinto al domingo</strong>. Si no se pacta, se presume el domingo. Esto cambia cómo se liquidan los recargos y debe quedar en otrosí.</p>
+    </div>
+    <div class="sabia">
+      <div class="tip-cat">💡 SABÍAS QUE</div>
+      <h4>El trabajo ocasional en día de descanso es hasta 2 veces al mes</h4>
+      <p>La Ley 2466 define que el trabajo en día de descanso es <strong>ocasional</strong> cuando ocurre hasta 2 veces al mes, y <strong>habitual</strong> cuando ocurre 3 o más veces. Aunque el recargo es el mismo, la distinción puede tener implicaciones contractuales.</p>
+    </div>
+    <div class="sabia">
+      <div class="tip-cat">💡 SABÍAS QUE</div>
+      <h4>La desconexión digital ya es un derecho</h4>
+      <p>Desde la Ley 2466, el trabajador tiene derecho a <strong>no contestar mensajes, llamadas ni correos fuera de su jornada laboral</strong> sin que eso sea considerado falta disciplinaria. Esto aplica incluso en grupos de WhatsApp de obra.</p>
+    </div>
+    <div class="sabia">
+      <div class="tip-cat">💡 SABÍAS QUE</div>
+      <h4>El otrosí también aplica si no hay monto definido</h4>
+      <p>Muchos creen que el otrosí solo aplica para cambios económicos. Pero cualquier pacto verbal con el trabajador — cambio de función, de horario, de lugar — debe documentarse en otrosí. Si no está escrito, legalmente no existió.</p>
+    </div>
+    <div class="sabia">
+      <div class="tip-cat">💡 SABÍAS QUE</div>
+      <h4>El proceso disciplinario tiene tiempo límite</h4>
+      <p>Si notificas una sanción <strong>después de 30 días</strong> de haber hecho los descargos, la sanción caduca y no tiene validez. El reloj corre desde el momento en que se firma el acta de descargos, no desde que ocurrió la falta.</p>
+    </div>
+  </div>
+
+  <p class="sec-sub">🛠️ Tips extra de norma y gestión</p>
+  <div class="cgrid c2">
+    <div class="tip">
+      <div class="tip-cat">📋 NÓMINA</div>
+      <h4>El recordatorio que te salva la quincena</h4>
+      <p>Pon una alarma en el celular 2 días antes del corte de nómina con el texto "¿Enviaste todas las novedades?". Simple, gratis y elimina el 80% de los errores de envío tardío.</p>
+    </div>
+    <div class="tip or">
+      <div class="tip-cat">📋 NÓMINA</div>
+      <h4>Foto al registro, foto a la novedad</h4>
+      <p>Cuando un trabajador llegue tarde o falte, registra la novedad ese mismo día. Si alguien lo disputa después, tienes la evidencia lista. Lo que no se registra en el día, no existe.</p>
+    </div>
+    <div class="tip dk">
+      <div class="tip-cat">⚖️ DISCIPLINARIO</div>
+      <h4>El testigo silencioso</h4>
+      <p>En toda diligencia de descargos, ten siempre un segundo testigo presente aunque el trabajador venga solo. Nunca hagas estas reuniones de uno a uno sin testigo. Si después niega lo dicho, tienes respaldo.</p>
+    </div>
+    <div class="tip">
+      <div class="tip-cat">📁 CARPETAS</div>
+      <h4>El checklist del primer día</h4>
+      <p>Cuando ingrese un trabajador, no salgas sin tener: cédula, contrato firmado, certificado bancario, afiliaciones iniciadas e Inspektor consultado. Lo que no se hace el día 1 tarda semanas en completarse.</p>
+    </div>
+  </div>
+</div>
+
+</div><!-- /content -->
+
+<div class="footer"><strong>Kit de Supervivencia · Capital Humano en Obra</strong> · Ventus · Ley 2466 de 2025</div>
+
+<script>
+function show(id,btn){
+  document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.tbtn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  btn.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+}
+</script>
+</body>
+</html>
